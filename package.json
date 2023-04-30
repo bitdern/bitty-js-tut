@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bitcore-lib": "^10.0.5",
+    "bitcore-mnemonic": "^10.0.5",
+    "node": "^19.8.1"
+  }
+}
