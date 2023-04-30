@@ -4,17 +4,19 @@ const bitcore = require("bitcore-lib");
 
 module.exports = sendBitcoin = async (receiverAddress, amountToSend) => {
   try {
+    // will need to use another API for send functionality
     const sochain_network = "BTCTEST";
     const privateKey =
       "d2a2d325596912b2c1b4ca90e47b9b2278dbbdb80429f8cef5010eb084c8d8f5";
-    const sourceAddress = "tb1qw2c3lxufxqe2x9s4rdzh65tpf4d7fssjgh8nv6";
+    const sourceAddress = "n15eYCiK3yxBpdEy8QZgEa5ST4FLRiy1pq";
     const satoshiToSend = amountToSend * 100000000;
     let fee = 0;
     let inputCount = 0;
     let outputCount = 2;
 
+    // THIS WILL NEED TO BE UPDATED SOCHAIN API HAS BEEN CHANGED
     const response = await axios.get(
-      `https://sochain.com/api/v2/get_tx_unspent/${sochain_network}/${sourceAddress}`
+      `https://chain.so/api/v3/unspent_outputs/${sochain_network}/${sourceAddress}/${page}`
     );
 
     const recommendedFee = await axios.get(
@@ -71,6 +73,7 @@ module.exports = sendBitcoin = async (receiverAddress, amountToSend) => {
     const serializedTransaction = transaction.serialize();
 
     // Send transaction
+    // THIS WILL NEED TO BE UPDATED SOCHAIN API HAS BEEN CHANGED
     const result = await axios({
       method: "POST",
       url: `https://sochain.com/api/v2/send_tx/${sochain_network}`,

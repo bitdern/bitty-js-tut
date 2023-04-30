@@ -2,7 +2,7 @@ const { testnet, mainnet } = require("bitcore-lib/lib/networks");
 const { createWallet, createHDWallet } = require("./bitty-wallet");
 const sendBitcoin = require("./send-bitty");
 
-sendBitcoin("mkHS9ne12qx9pS9VojpwU5xtRd4T7X7ZUt", 0.02)
+sendBitcoin("tb1qw2c3lxufxqe2x9s4rdzh65tpf4d7fssjgh8nv6", 0.02)
   .then((result) => {
     console.log(result);
   })
