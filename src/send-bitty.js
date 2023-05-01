@@ -54,7 +54,7 @@ module.exports = sendBitcoin = async (receiverAddress, amountToSend) => {
     if (totalAmountAvailable - satoshiToSend - fee < 0) {
       throw new Error("Balance is too low for this transaction");
     }
-    //Set transaction input
+    // Set transaction input
     transaction.from(inputs);
 
     // set the recieving address and the amount to send
@@ -63,7 +63,7 @@ module.exports = sendBitcoin = async (receiverAddress, amountToSend) => {
     // Set change address - Address to receive the left over funds after transfer
     transaction.change(sourceAddress);
 
-    //manually set transaction fees: 20 satoshis per byte
+    // manually set transaction fees: 20 satoshis per byte
     transaction.fee(Math.round(fee));
 
     // Sign transaction with your private key
@@ -73,9 +73,10 @@ module.exports = sendBitcoin = async (receiverAddress, amountToSend) => {
     const serializedTransaction = transaction.serialize();
 
     // Send transaction
-    // THIS WILL NEED TO BE UPDATED SOCHAIN API HAS BEEN CHANGED
     const result = await axios({
       method: "POST",
+
+      // THIS WILL NEED TO BE UPDATED SOCHAIN API HAS BEEN CHANGED
       url: `https://sochain.com/api/v2/send_tx/${sochain_network}`,
       data: {
         tx_hex: serializedTransaction,
